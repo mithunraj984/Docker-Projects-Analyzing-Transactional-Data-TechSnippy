@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+ mongodb:
+    image: mongo:4.2
+    container_name: mongodb
+    volumes:
+      - mongodbdata:/data/db
+    ports:
+      - "27017:27017"
+
+ pythonapp:
+    build: .
+    container_name: pythonapp
+    ports:
+      - "80:80"
+    depends_on:
+      - mongodb
